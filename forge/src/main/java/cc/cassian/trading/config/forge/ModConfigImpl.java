@@ -1,7 +1,7 @@
-package cc.cassian.trading.config.neoforge;
+package cc.cassian.trading.config.forge;
 
 import cc.cassian.trading.VillagerTrading;
-import net.neoforged.fml.loading.FMLLoader;
+import net.minecraftforge.fml.loading.FMLLoader;
 
 import java.nio.file.Path;
 

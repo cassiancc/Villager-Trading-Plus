@@ -58,9 +58,9 @@ public class BetterGuiMerchant extends MerchantScreen implements AutoTrade {
     }
 
     private boolean hasEnoughItemsInInventory(TradeOffer recipe) {
-        if (!hasEnoughItemsInInventory(recipe.getDisplayedFirstBuyItem()))
+        if (!hasEnoughItemsInInventory(recipe.getAdjustedFirstBuyItem()))
             return false;
-        if (!hasEnoughItemsInInventory(recipe.getDisplayedSecondBuyItem()))
+        if (!hasEnoughItemsInInventory(recipe.getSecondBuyItem()))
             return false;
         return true;
     }
@@ -103,8 +103,8 @@ public class BetterGuiMerchant extends MerchantScreen implements AutoTrade {
     private void transact(TradeOffer recipe) {
         //System.out.println("fill input slots called");
         int putback0, putback1=-1;
-        putback0=fillSlot(0, recipe.getDisplayedFirstBuyItem());
-        putback1=fillSlot(1, recipe.getDisplayedSecondBuyItem());
+        putback0=fillSlot(0, recipe.getAdjustedFirstBuyItem());
+        putback1=fillSlot(1, recipe.getSecondBuyItem());
 
         getslot(2, recipe.getSellItem(), putback0, putback1);
         //System.out.println("putting back to slot "+putback0+" from 0, and to "+putback1+"from 1");
@@ -161,7 +161,7 @@ public class BetterGuiMerchant extends MerchantScreen implements AutoTrade {
             return false;
         if (a.getItem() == b.getItem()
         &&  (!a.isDamageable() || a.getDamage()==b.getDamage())
-        &&   ItemStack.areItemsAndComponentsEqual(a, b))
+        &&   ItemStack.canCombine(a, b))
             return true;
         return false;
     }
